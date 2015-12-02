@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class UnitTest
 {
 	public static void main(String[] args)
@@ -9,21 +11,24 @@ public class UnitTest
 		System.out.println("Distanz Lachendorf (52.614549;10.23677) - Zurich (47.3844448;8.509779): " + Geolocation.calculateDistance(new Geolocation(52.61454,10.23677),new Geolocation(47.3844448,8.509779)));
 		System.out.println("Distanz Lachendorf (52.614549;10.23677) - Zurich (47.3844448;8.509779): " + new Geolocation(52.61454,10.23677).getDistance(new Geolocation(47.3844448,8.509779)));
 		*/
-		/*GOOGLE GEOCODING
+		//GOOGLE GEOCODING
 		try
 		{
 		//https://maps.googleapis.com/maps/api/geocode/json?address=Fasanenweg+16+29331+Lachendorf
 		//https://maps.googleapis.com/maps/api/geocode/json?address=Hohlstrasse+347+8004+Zurich
 		System.out.println("\nG O O G L E G E O C O D I N G");
 		System.out.println("Geocode Adresse: Fasanenweg 16, 29331 Lachendorf:");
-		System.out.println(GeoCoder.geocode("google|JSON|","Fasanenweg 16, 29331 Lachendorf"));
-		System.out.println("Geocode Adresse: Hohlstrasse 347, 8004 Zurich:");
-		System.out.println(GeoCoder.geocode("google|XML|","Hohlstrasse 347, 8004 Zurich"));
+		JSONObject json = new JSONObject(GeoCoder.geocode("google|JSON|","Fasanenweg 16, 29331 Lachendorf"));
+		System.out.println(((JSONObject)((JSONObject)((JSONObject)((JSONArray)json.get("results")).get(0)).get("geometry")).get("location")).get("lat"));
+		System.out.println(((JSONObject)((JSONObject)((JSONObject)((JSONArray)json.get("results")).get(0)).get("geometry")).get("location")).get("lng"));
+		
+		//System.out.println("Geocode Adresse: Hohlstrasse 347, 8004 Zurich:");
+		//System.out.println(GeoCoder.geocode("google|XML|","Hohlstrasse 347, 8004 Zurich"));
 		}catch(Exception ex)
 		{
 			System.out.println(ex.toString());
 		}
-		*/
+		
 		/*LOGGING
 		System.out.println("\nN O W  L O G G I N G");
 		Misc.log("Hallo Welt!");
