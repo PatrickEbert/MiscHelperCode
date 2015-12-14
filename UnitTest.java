@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.*;
 
 public class UnitTest
@@ -17,10 +18,44 @@ public class UnitTest
 		//https://maps.googleapis.com/maps/api/geocode/json?address=Fasanenweg+16+29331+Lachendorf
 		//https://maps.googleapis.com/maps/api/geocode/json?address=Hohlstrasse+347+8004+Zurich
 		System.out.println("\nG O O G L E G E O C O D I N G");
-		System.out.println("Geocode Adresse: Fasanenweg 16, 29331 Lachendorf:");
-		JSONObject json = new JSONObject(GeoCoder.geocode("google|JSON|","Fasanenweg 16, 29331 Lachendorf"));
-		System.out.println(((JSONObject)((JSONObject)((JSONObject)((JSONArray)json.get("results")).get(0)).get("geometry")).get("location")).get("lat"));
-		System.out.println(((JSONObject)((JSONObject)((JSONObject)((JSONArray)json.get("results")).get(0)).get("geometry")).get("location")).get("lng"));
+		//System.out.println("Geocode Adresse: Fasanenweg 16, 29331 Lachendorf:");
+		//JSONObject json = new JSONObject(GeoCoder.geocode("google|JSON|","Fasanenweg 16, 29331 Lachendorf"));
+		
+		int counter = 0;
+		BufferedReader br = new BufferedReader(new FileReader("TaxBaseGeoLocF2.csv"));
+		String currentLine;
+		PrintWriter pw = new PrintWriter("TaxBaseGeoLoc2.csv","UTF-8");
+		pw.println("City;TaxBase;Latitude;Longitude");
+		while((currentLine = br.readLine()) != null)
+		{
+			counter++;
+			System.out.println(counter);
+			String latitude = "";
+			String longitude = "";
+			String searchString = currentLine.split(";")[0] + ", UK";
+			try
+			{
+			JSONObject json = new JSONObject(GeoCoder.geocode("google|JSON|",searchString));
+			latitude = ((JSONObject)((JSONObject)((JSONObject)((JSONArray)json.get("results")).get(0)).get("geometry")).get("location")).get("lat").toString();
+			longitude = ((JSONObject)((JSONObject)((JSONObject)((JSONArray)json.get("results")).get(0)).get("geometry")).get("location")).get("lng").toString();
+			pw.println(currentLine + ";" + latitude + ";" + longitude);
+			}catch(JSONException jEx)
+			{
+				pw.println(currentLine + ";0;0");
+			}
+			Random randGen = new Random();
+			int randomNumber = randGen.nextInt(900);
+			Thread.sleep(100 + randomNumber);
+		}
+		br.close();
+		pw.close();
+		/*
+		String searchString = "Adur;
+		JSONObject json = new JSONObject(GeoCoder.geocode("google|JSON|",searchString));
+		String latitude = ((JSONObject)((JSONObject)((JSONObject)((JSONArray)json.get("results")).get(0)).get("geometry")).get("location")).get("lat").toString();
+		String longitude = ((JSONObject)((JSONObject)((JSONObject)((JSONArray)json.get("results")).get(0)).get("geometry")).get("location")).get("lng").toString();
+		System.out.println(json);
+		*/
 		
 		//System.out.println("Geocode Adresse: Hohlstrasse 347, 8004 Zurich:");
 		//System.out.println(GeoCoder.geocode("google|XML|","Hohlstrasse 347, 8004 Zurich"));
