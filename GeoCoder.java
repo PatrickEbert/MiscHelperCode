@@ -55,6 +55,7 @@ public class GeoCoder
 						{
 							query += "?key=" + key;
 						}
+						System.out.println(query);
 						URL googleUrl = new URL(query);
 						URLConnection googleUrlCon = googleUrl.openConnection();
 						BufferedReader br = new BufferedReader(new InputStreamReader(googleUrlCon.getInputStream()));

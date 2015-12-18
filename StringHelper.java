@@ -23,7 +23,10 @@ public class StringHelper
 				offset = noTrimIndex;
 				int endOffset = pattern.indexOf("}",offset);
 				result += pattern.substring(lastEndOffset,offset);
-				result += line.split(delimiter)[Integer.parseInt(pattern.substring(offset + 1, endOffset))];
+				if(line.split(delimiter).length > Integer.parseInt(pattern.substring(offset + 1, endOffset)))
+				{
+					result += line.split(delimiter)[Integer.parseInt(pattern.substring(offset + 1, endOffset))];
+				}
 				lastEndOffset = endOffset + 1;
 			}
 			else
@@ -31,11 +34,14 @@ public class StringHelper
 				offset = trimIndex;
 				int endOffset = pattern.indexOf("]",offset);
 				result += pattern.substring(lastEndOffset,offset);
-				result += line.split(delimiter)[Integer.parseInt(pattern.substring(offset + 1, endOffset))].trim();
+				if(line.split(delimiter).length > Integer.parseInt(pattern.substring(offset + 1, endOffset)))
+				{
+					result += line.split(delimiter)[Integer.parseInt(pattern.substring(offset + 1, endOffset))].trim();
+				}
 				lastEndOffset = endOffset + 1;
 			}
 			offset++;
-		}f
+		}
 		return result;
 	}
 }
