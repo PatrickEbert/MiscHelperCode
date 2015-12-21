@@ -5,7 +5,7 @@ public class UnitTest
 {
 	public static void main(String[] args)
 	{
-		String filename = "SampleB2.csv";
+		String filename = "SampleE2.csv";
 		String charset = "UTF-8";
 		System.out.println("Welcome to UnitTesting!");
 		List<String>addresses = FileHelper.readFileToArray(filename,charset,true);
