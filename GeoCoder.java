@@ -1,6 +1,7 @@
 import java.lang.*;
 import java.net.*;
 import java.io.*;
+import java.util.*;
 
 /**
 * This is a Java based geocoding tool.
@@ -85,5 +86,26 @@ public class GeoCoder
 		{
 			throw new Exception("Not a valid provider String. Please delimit parameters within that parameter with '|'");
 		}
+	}
+	
+	public static void geocodeFile(String sourceFilename, String sourceCharset, String sourcePattern, String sourceDelimiter, String geocodeControl, String targetFilename, String targetPattern, String targetDelimiter)
+	{
+		List<String>addresses = FileHelper.readFileToArray(sourceFilename,sourceCharset,true);
+		List<String>geocodes = new ArrayList<String>();
+		Iterator i = addresses.iterator();
+		Random rand = new Random();
+		int x = 0;
+		while(i.hasNext())
+		{
+				try
+				{
+				String query = (String)i.next();
+				JSONObject json = new JSONObject(GeoCoder.geocode(geocodeControl,StringHelper.evaluatePattern(query,sourcePattern,sourceDelimiter).replace("\"","")));
+				geocodes.add(StringHelper.evaluatePattern(query,targetPattern,sourceDelimiter).replace("\"","") + targetDelimiter + json);
+				Misc.pause(250 + rand.nextInt(1100));
+				}catch(Exception ex){System.out.println("Exception Geocoder.geocodeFile " + ex.toString());}
+				System.out.println(++x + " of " + addresses.size());
+		}
+		FileHelper.writeArrayToFile(geocodes,targetFilename,false);
 	}
 }

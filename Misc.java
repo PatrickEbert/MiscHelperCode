@@ -43,4 +43,15 @@ public class Misc
 			System.out.println("Logging failed: " + ioex.toString());
 		}
 	}
+	
+	public static void pause(long time)
+	{
+		try
+		{
+			Thread.sleep(time);
+		}catch(Exception ex)
+		{
+			System.out.println("Exception Misc.pause: " + ex.toString());
+		}
+	}
 }
