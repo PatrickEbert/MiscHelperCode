@@ -8,9 +8,16 @@ public class UnitTest
 		// S T A N D A R D  S E T T I N G S
 		System.out.println("Welcome to UnitTesting!");
 		Random rand = new Random();
-
-		//TelDirectorySearch.searchFile("TelSearchSample.csv","UTF-8","[1], [3] [11]",",","resTelSearchSample.csv","[0]",";");
 		
+		try
+		{
+		String response = "";
+		response = GeoCoder.geocode("yahoo|xml|","Fasanenweg 16, 29331 Lachendorf");
+		System.out.println(response);
+		}catch(Exception ex){System.out.println("Exception UnitTest.main: " + ex.toString());}
+		
+		// RUN BATCH API CALLS FOR BIG DATA SAMPLE DATA COLLECTING
+		TelDirectorySearch.searchFile("TelSearchSample.csv","UTF-8","[1], [3] [11]",",","resTelSearchSample.csv","[0]",";");
 		GeoCoder.geocodeFile("GeoSample.csv", "UTF-8", "[1], [3] [11]", ",", "google|json|", "resGeoSample.csv", "[0]", ";");
 		
 		/*CLASS GEOLOCATION DISTANCE CALCULATION

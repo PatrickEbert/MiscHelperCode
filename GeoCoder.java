@@ -74,7 +74,35 @@ public class GeoCoder
 					}
 					case "yahoo":
 					{
-						return "this is yahoo";
+						try
+						{
+						String responseType = provider.substring(webService.length() + 1,provider.indexOf("|",webService.length() + 1));
+						switch(responseType.toLowerCase())
+						{
+							case "json":
+								responseType = "json";									break;
+							case "xml":
+								responseType = "xml";
+								break;
+							default:
+									throw new Exception("no valid responseType for google is provided. Valid responsetypes are JSON and XML.");
+						}
+						String query = "https://query.yahooapis.com/v1/public/yql?format=" + responseType + "&q=select%20*%20from%20geo.placefinder%20where%20text%3D%22" + address.trim().replace(" ","%20").replace(",","%2C") + "%22";
+						System.out.println(query);
+						URL googleUrl = new URL(query);
+						URLConnection googleUrlCon = googleUrl.openConnection();
+						BufferedReader br = new BufferedReader(new InputStreamReader(googleUrlCon.getInputStream()));
+						String line;
+						String response = "";
+						while((line = br.readLine())!= null)
+						{
+							response += line;
+						}
+						return response;
+						}catch(IndexOutOfBoundsException ioobEx)
+						{
+							throw new Exception("Please provide valid provider information for google: GOOGLE|{JSON;XML}|YourKey(optional)");
+						}
 					}
 					default:
 					{

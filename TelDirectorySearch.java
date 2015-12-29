@@ -44,7 +44,7 @@ public class TelDirectorySearch
 		int x = 0;
 		while(i.hasNext())
 		{
-			Misc.pause(1000 + rand.nextInt(1000));
+			Misc.pause(250 + rand.nextInt(1000));
 			String address = (String)i.next();
 			entries.add(StringHelper.evaluatePattern(address,targetPattern,sourceDelimiter).replace("\"","") + targetDelimiter + TelDirectorySearch.getSearchEntriesPerAdress(StringHelper.evaluatePattern(address,sourcePattern,sourceDelimiter).replace("\"","")));
 			System.out.println(++x + " of " + addresses.size());
