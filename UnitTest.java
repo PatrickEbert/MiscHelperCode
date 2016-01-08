@@ -9,16 +9,10 @@ public class UnitTest
 		System.out.println("Welcome to UnitTesting!");
 		Random rand = new Random();
 		
-		try
-		{
-		String response = "";
-		response = GeoCoder.geocode("yahoo|xml|","Fasanenweg 16, 29331 Lachendorf");
-		System.out.println(response);
-		}catch(Exception ex){System.out.println("Exception UnitTest.main: " + ex.toString());}
-		
 		// RUN BATCH API CALLS FOR BIG DATA SAMPLE DATA COLLECTING
+		GeoCoder.geocodeFile("YaGeoSample.csv", "UTF-8", "[1], [3] [11]", ",", "yahoo|json|", "resYaGeoSample.csv", "[0];YAHOO", ";");
 		TelDirectorySearch.searchFile("TelSearchSample.csv","UTF-8","[1], [3] [11]",",","resTelSearchSample.csv","[0]",";");
-		GeoCoder.geocodeFile("GeoSample.csv", "UTF-8", "[1], [3] [11]", ",", "google|json|", "resGeoSample.csv", "[0]", ";");
+		GeoCoder.geocodeFile("GooGeoSample.csv", "UTF-8", "[1], [3] [11]", ",", "google|json|", "resGooGeoSample.csv", "[0]", ";");
 		
 		/*CLASS GEOLOCATION DISTANCE CALCULATION
 		System.out.println("C L A S S  G E O L O C A T I O N  D I S T A N C E  C A L C U L A T I O N");
