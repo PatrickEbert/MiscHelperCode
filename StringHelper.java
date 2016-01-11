@@ -44,4 +44,48 @@ public class StringHelper
 		}
 		return result;
 	}
+	
+	public static boolean stringContainsStringFromList(String input,List<String> listToCompare)
+	{
+		boolean containsItem = false;
+		Iterator i = listToCompare.iterator();
+		while(i.hasNext())
+		{
+			if(input.indexOf((String)i.next()) >= 0)
+			{
+				containsItem = true;
+				break;
+			}
+		}
+		return containsItem;
+	}
+	
+	public static String stringFromListContainedInString(String input,List<String> listToCompare)
+	{
+		String containingItem = "";
+		Iterator i = listToCompare.iterator();
+		while(i.hasNext())
+		{
+			String item = (String)i.next();
+			if(input.indexOf(item) >= 0)
+			{
+				containingItem = item;
+				break;
+			}
+		}
+		return containingItem;
+	}
+	
+	public static boolean stringIsInteger(String testString)
+	{
+		try
+		{
+			Integer.parseInt(testString.trim());
+			return true;
+		}
+		catch(Exception ex)
+		{
+			return false;
+		}
+	}
 }

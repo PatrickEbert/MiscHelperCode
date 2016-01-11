@@ -10,7 +10,7 @@ public class UnitTest
 		Random rand = new Random();
 		
 		// RUN BATCH API CALLS FOR BIG DATA SAMPLE DATA COLLECTING
-		GeoCoder.geocodeFile("YaGeoSample.csv", "UTF-8", "[1], [3] [11]", ",", "yahoo|json|", "resYaGeoSample.csv", "[0];YAHOO", ";");
+		GeoCoder.geocodeFile("YaGeoSample.csv", "UTF-8", "[1], [3] [11]", ",", "yahoo|json|", "resYaGeoSample.csv", "[0];ZHOpenDataAdresses;YAHOO", ";");
 		TelDirectorySearch.searchFile("TelSearchSample.csv","UTF-8","[1], [3] [11]",",","resTelSearchSample.csv","[0]",";");
 		GeoCoder.geocodeFile("GooGeoSample.csv", "UTF-8", "[1], [3] [11]", ",", "google|json|", "resGooGeoSample.csv", "[0]", ";");
 		
