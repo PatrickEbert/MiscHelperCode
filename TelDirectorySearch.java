@@ -1,4 +1,4 @@
-/**
+/***
  * This class supports websearch of telco directory data
  * Tel.search.ch API Developer Key: "bf5afd1bbbe3405e957334ac1d6f9a05"
  * 

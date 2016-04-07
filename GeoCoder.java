@@ -3,7 +3,7 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-/**
+/***
 * This is a Java based geocoding tool.
 * it's purpose is to be used as commandline interface tool to geocode data
 * and it could be integrated in java applications using the the static functions as documented

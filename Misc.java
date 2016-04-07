@@ -1,4 +1,7 @@
 import java.io.*;
+import java.sql.*;
+import java.util.*;
+
 /**
 *
 * Class Misc represents a collection of simple static methods which are used across the board to simplify the code and remove necessary but offtopic code from "business" logic
@@ -6,7 +9,18 @@ import java.io.*;
 */
 public class Misc
 {
-	/**
+	/***
+	 * now returns the actual timestamp in format "yyyy-mm-dd hh:mi:ss.msc" using the OS of the system it is running on without timezone information
+	 *
+	 * @return
+     */
+	public static String now()
+	{
+		java.util.Date date = new java.util.Date();
+		return (new Timestamp(date.getTime())).toString();
+	}
+
+	/***
 	* log(String text) writes any given text to a file called 'Log.txt' in the actual working directory. If 'Log.txt' doesn't exist it will be created, if it exists the text wîll be appended. At the end a newline character will be appended
 	*
 	* @param text given by caller to write into a './Log.txt' ended by a newline character

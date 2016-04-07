@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.net.*;
 
 public class UnitTest
 {
@@ -8,10 +9,13 @@ public class UnitTest
 		// S T A N D A R D  S E T T I N G S
 		System.out.println("Welcome to UnitTesting!");
 		Random rand = new Random();
-		
+
 		// RUN BATCH API CALLS FOR BIG DATA SAMPLE DATA COLLECTING
 		TelDirectorySearch.searchFile("TelSearchSample.csv","UTF-8","[1], [3] [11]",",","resTelSearchSample.csv","[0]",";");
-		GeoCoder.geocodeFile("GooGeoSample.csv", "UTF-8", "[1], [3] [11]", ",", "google|json|", "resGooGeoSample.csv", "[0];ZHOpenDataAdresses;GOOGLE", ";");
+		Weather.getWeatherFile("Cities.txt","Weather.csv",true);
+		//System.out.println(Weather.getWeather(new Geolocation(10.23677,52.614549)));
+
+		//GeoCoder.geocodeFile("GooGeoSample.csv", "UTF-8", "[1], [3] [11]", ",", "google|json|", "resGooGeoSample.csv", "[0];ZHOpenDataAdresses;GOOGLE", ";");
 		
 		/*CLASS GEOLOCATION DISTANCE CALCULATION
 		System.out.println("C L A S S  G E O L O C A T I O N  D I S T A N C E  C A L C U L A T I O N");

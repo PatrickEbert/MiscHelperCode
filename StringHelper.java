@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class StringHelper
 {
 	public static String evaluatePattern(String line, String pattern, String delimiter)
